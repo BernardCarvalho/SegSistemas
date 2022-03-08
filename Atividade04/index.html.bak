@@ -64,7 +64,7 @@
 	</select>
 	<button id="gerar-chave-playfair">Gerar Chave Aleatória</button><br>
 	<br>
-	<input type="text" id="chave"><button id="botao-insere-chave">Inserir Chave Manual</button>
+	<input type="text" id="chave"><button id="botao-insere-chave">Inserir Chave Manual</button><br>
 	<br>
 	<button id="criptografa">Criptografar</button><br><br>
 	<input type="text" id="texto-cifrado" placeholder="texto Cifrado" disabled>

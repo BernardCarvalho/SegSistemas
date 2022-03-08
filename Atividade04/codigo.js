@@ -109,8 +109,6 @@ function geraChaveManual(){
 	
 }
 
-
-
 function formataGrupos(textoClaroSubStr){
 	let texto=[];
 	for(let i=0; i<textoClaroSubStr.length;i++){
@@ -202,8 +200,79 @@ function criptografa(){
 		document.getElementById('texto-cifrado').value+=PilhaGruposCifrados[i];
 	}
 }
-function getChar(col, row){
+
+function descriptografa(){
+	//verifica se o texto de entrada tem a letra excluida
+	for(let i=0;i<document.getElementById("texto-claro").value.length;i++){
+		if(document.getElementById("texto-claro").value[i]==document.getElementById("excluir-letra").value){
+			console.log("A entrada possui dados incompativeis (Letra excluida)");
+			return;
+		}
+	}
+	//separa a string de entrada em grupos de dois em uma pilha;
+	let textoEntrada = document.getElementById("texto-claro").value;
+	let textoEntradaSubStr =[];
+	for(let i=0;i<textoEntrada.length;i+=2)
+		textoEntradaSubStr.push(textoEntrada.substring(i,i+2));
+	//decriptografa os grupos;
+	let subStringsDecriptografadas=descriptografaGrupos(textoEntradaSubStr);
+	console.log(subStringsDecriptografadas);
+	//preenche o texto de saida com a pilha decriptografada
+	let textoSaida=document.getElementById("texto-cifrado");
+	textoSaida.value="";
+	for(let i=0;i<subStringsDecriptografadas.length;i++){
+		textoSaida.value+=subStringsDecriptografadas[i];
+	}
 	
+}
+
+function descriptografaGrupos(pilhaGrupos){
+	console.log(pilhaGrupos);
+	//itera entre os grupos
+	let resposta=[];
+	for(let i=0;i<pilhaGrupos.length;i++){
+		if(
+			getCol(getIndex(pilhaGrupos[i][0])) ==
+			getCol(getIndex(pilhaGrupos[i][1]))
+			){
+			let string = 	getChar(getCol(getIndex(pilhaGrupos[i][0])),getRow(getIndex(pilhaGrupos[i][0]))-1)								+
+							getChar(getCol(getIndex(pilhaGrupos[i][1])),getRow(getIndex(pilhaGrupos[i][1]))-1);
+			//console.log("String: "+string);
+			resposta.push(string);
+			continue;
+		}
+	
+		if(
+			getRow(getIndex(pilhaGrupos[i][0])) ==
+			getRow(getIndex(pilhaGrupos[i][1]))
+			){
+			let string = 	getChar(getCol(getIndex(pilhaGrupos[i][0])-1),getRow(getIndex(pilhaGrupos[i][0])))								+
+							getChar(getCol(getIndex(pilhaGrupos[i][1])-1),getRow(getIndex(pilhaGrupos[i][1])));
+			//console.log("String: "+string);
+			resposta.push(string);
+			continue;
+		}
+		
+		let string = 	getChar(getCol(getIndex(pilhaGrupos[i][1])),getRow(getIndex(pilhaGrupos[i][0])))								+
+						getChar(getCol(getIndex(pilhaGrupos[i][0])),getRow(getIndex(pilhaGrupos[i][1])));
+		//console.log("String: "+string);
+		resposta.push(string);
+		
+		
+		
+			
+		//console.log(getCol(getIndex(pilhaGrupos[i][0])) == getCol(getIndex(pilhaGrupos[i][1])));
+	}
+	console.log("resposta:"+resposta);
+	return resposta;
+}
+
+
+function getChar(col, row){
+	if(col<0)
+		col+=5;
+	if(row<0)
+		row+=5;
 	if(col>4)
 		col-=5;
 	if(row>4)
@@ -236,10 +305,11 @@ onload=function(){
 	document.getElementById("chave").addEventListener("keyup",criptografa);
 	document.getElementById("botao-insere-chave").onclick=geraChaveManual;
 	document.getElementById("botao-insere-chave").addEventListener("click",criptografa,false);
-	document.getElementById("texto-claro").onkeyup=criptografa;
+	//document.getElementById("texto-claro").onkeyup=criptografa;
 	document.getElementById("gerar-chave-playfair").onclick=geraNovaChave;
 	document.getElementById("excluir-letra").onchange=geraNovaChave;
 	document.getElementById("gerar-chave-playfair").addEventListener("click",criptografa,false);
 	document.getElementById("criptografa").onclick=criptografa;
+	document.getElementById("descriptografa").onclick=descriptografa;
 	geraNovaChave();
 };

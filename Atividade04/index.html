@@ -20,7 +20,7 @@
 	*{
 		text-align:center;
 	}
-	button#criptografa{
+	button#criptografa, button#descriptografa{
 		width: 20em;
 		font-size: 2em;
 	}
@@ -38,7 +38,7 @@
 	<h1>Cifra de Playfair</h1>
 	<p>Letra 'Dummy': 'Z'</p>
 	<p>Apenas foi tratado o uso de letras em CAIXA ALTA, sem acentos</p>
-	<input type="text" id="texto-claro" placeholder="Texto Claro"><br><br>
+	<input type="text" id="texto-claro" placeholder="Texto Entrada"><br><br>
 	<table id="chave-playfair" >
 		<tr><td></td><td></td><td></td><td></td><td></td></tr>
 		<tr><td></td><td></td><td></td><td></td><td></td></tr>
@@ -67,9 +67,8 @@
 	<input type="text" id="chave"><button id="botao-insere-chave">Inserir Chave Manual</button><br>
 	<br>
 	<button id="criptografa">Criptografar</button><br><br>
-	<input type="text" id="texto-cifrado" placeholder="texto Cifrado" disabled>
-	
-	
+	<button id="descriptografa">Descriptografar</button><br><br>
+	<input type="text" id="texto-cifrado" placeholder="Texto Saída" disabled>
 	<script src="codigo.js"></script>
 </body>
 </html>
