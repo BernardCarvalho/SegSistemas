@@ -185,7 +185,7 @@ onload=function(){
 	document.getElementById("texto-claro").onkeyup=criptografa;
 	document.getElementById("gerar-chave-playfair").onclick=geraNovaChave;
 	document.getElementById("excluir-letra").onchange=geraNovaChave;
-	Document.getElementById("gerar-chave-playfair").addEventListener("onclick",criptografa);
+	document.getElementById("gerar-chave-playfair").addEventListener("onclick",criptografa);
 	document.getElementById("criptografa").onclick=criptografa;
 	geraNovaChave();
 };
