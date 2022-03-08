@@ -59,6 +59,57 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+function geraChaveManual(){
+	if(document.getElementById("chave").value.length!=5){
+		console.log("Chave de tamanho diferente de 5");
+		return;
+	}
+	for(let i=0; i<5;i++)
+		if(	document.getElementById("chave").value[i]
+			==
+			document.getElementById("excluir-letra").value){
+			alert("Elemento da Chave é a letra excluida do alfabeto");
+			return;
+		}
+	
+	let pilha = [], 
+		vetor = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
+			     'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+		letraExcluida=document.getElementById("excluir-letra").value;
+		vetor = excluiLetraDoVetor(vetor, letraExcluida);
+	for(let i=0; i<25; i++){
+		if(i<5)
+		{
+			document.querySelectorAll("td")[i].innerHTML="";
+			let input=document.createElement("input");
+			input.setAttribute("type","text");
+			 document.querySelectorAll("td")[i].appendChild(input);
+			input.setAttribute("value",document.getElementById("chave").value[i]);
+			vetor = excluiLetraDoVetor(vetor, document.getElementById("chave").value[i]);
+		}
+		else{
+			for(let j=0; j<26; j++){
+				if(vetor[j]!='-'){
+					document.querySelectorAll("td")[i].innerHTML="";
+					let input=document.createElement("input");
+					input.setAttribute("type","text");
+					 document.querySelectorAll("td")[i].appendChild(input);
+					input.setAttribute("value",vetor[j]);
+					vetor = excluiLetraDoVetor(vetor, vetor[j]);
+					break;
+				}
+			}
+		}
+		//console.log(vetor);
+		
+		
+	}
+	
+	
+	
+}
+
+
 
 function formataGrupos(textoClaroSubStr){
 	let texto=[];
@@ -85,7 +136,7 @@ function criptografaGrupos(pilhaGrupos){
 			){
 			let string = 	getChar(getCol(getIndex(pilhaGrupos[i][0])),getRow(getIndex(pilhaGrupos[i][0]))+1)								+
 							getChar(getCol(getIndex(pilhaGrupos[i][1])),getRow(getIndex(pilhaGrupos[i][1]))+1);
-			console.log("String: "+string);
+			//console.log("String: "+string);
 			resposta.push(string);
 			continue;
 		}
@@ -96,23 +147,22 @@ function criptografaGrupos(pilhaGrupos){
 			){
 			let string = 	getChar(getCol(getIndex(pilhaGrupos[i][0])+1),getRow(getIndex(pilhaGrupos[i][0])))								+
 							getChar(getCol(getIndex(pilhaGrupos[i][1])+1),getRow(getIndex(pilhaGrupos[i][1])));
-			console.log("String: "+string);
+			//console.log("String: "+string);
 			resposta.push(string);
 			continue;
 		}
 		
 		let string = 	getChar(getCol(getIndex(pilhaGrupos[i][1])),getRow(getIndex(pilhaGrupos[i][0])))								+
 						getChar(getCol(getIndex(pilhaGrupos[i][0])),getRow(getIndex(pilhaGrupos[i][1])));
-		console.log("String: "+string);
+		//console.log("String: "+string);
 		resposta.push(string);
 		
 		
 		
 			
-		console.log(getCol(getIndex(pilhaGrupos[i][0])) ==
-			getCol(getIndex(pilhaGrupos[i][1])));
+		//console.log(getCol(getIndex(pilhaGrupos[i][0])) == getCol(getIndex(pilhaGrupos[i][1])));
 	}
-	console.log(resposta);
+	//console.log(resposta);
 	return resposta;
 }
 function criptografa(){
@@ -158,7 +208,7 @@ function getChar(col, row){
 		col-=5;
 	if(row>4)
 		row-=5;
-	console.log(col+":"+row);
+	//console.log(col+":"+row);
 	
 	return document.querySelectorAll("td")[row*5+col].firstChild.value;
 }
@@ -173,15 +223,19 @@ function getCol(index){
 	return index%5;
 }
 function getRow(index){
-	console.log("getRow Index:"+index);
+	//console.log("getRow Index:"+index);
 	let ans = Math.floor(index/5);
 	if(ans>4)
 		ans-=5;
-	console.log("getRow returning "+ans);
+	//console.log("getRow returning "+ans);
 	return ans;
 }
+
 onload=function(){
-	
+	document.getElementById("chave").onkeyup=geraChaveManual;
+	document.getElementById("chave").addEventListener("keyup",criptografa);
+	document.getElementById("botao-insere-chave").onclick=geraChaveManual;
+	document.getElementById("botao-insere-chave").addEventListener("click",criptografa,false);
 	document.getElementById("texto-claro").onkeyup=criptografa;
 	document.getElementById("gerar-chave-playfair").onclick=geraNovaChave;
 	document.getElementById("excluir-letra").onchange=geraNovaChave;

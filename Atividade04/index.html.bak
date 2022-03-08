@@ -24,12 +24,20 @@
 		width: 20em;
 		font-size: 2em;
 	}
+	input#chave{
+		width: 4em;
+		font-size: 2em;
+	}
+	button{
+	font-size: 2em;
+	}
 	
 	</style>
 </head>
 <body>
 	<h1>Cifra de Playfair</h1>
 	<p>Letra 'Dummy': 'Z'</p>
+	<p>Apenas foi tratado o uso de letras em CAIXA ALTA, sem acentos</p>
 	<input type="text" id="texto-claro" placeholder="Texto Claro"><br><br>
 	<table id="chave-playfair" >
 		<tr><td></td><td></td><td></td><td></td><td></td></tr>
@@ -54,8 +62,10 @@
 		<option value="W">W</option><option value="X">X</option>
 		<option value="Y">Y</option><option value="Z">Z</option>
 	</select>
-	<button id="gerar-chave-playfair">Gerar Chave Aleatória</button>
-	<br><br>
+	<button id="gerar-chave-playfair">Gerar Chave Aleatória</button><br>
+	<br>
+	<input type="text" id="chave"><button id="botao-insere-chave">Inserir Chave Manual</button>
+	<br>
 	<button id="criptografa">Criptografar</button><br><br>
 	<input type="text" id="texto-cifrado" placeholder="texto Cifrado" disabled>
 	
