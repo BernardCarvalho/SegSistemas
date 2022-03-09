@@ -7,6 +7,7 @@ function geraNovaChave(){
 		tds[i].innerHTML="";
 		input = document.createElement("Input");
 		input.setAttribute("type","text");
+		input.setAttribute("disabled","yes");
 		tds[i].appendChild(input);
 		input.value=pilha.pop();
 	}
@@ -83,7 +84,8 @@ function geraChaveManual(){
 			document.querySelectorAll("td")[i].innerHTML="";
 			let input=document.createElement("input");
 			input.setAttribute("type","text");
-			 document.querySelectorAll("td")[i].appendChild(input);
+			input.setAttribute("disabled","yes");
+			document.querySelectorAll("td")[i].appendChild(input);
 			input.setAttribute("value",document.getElementById("chave").value[i]);
 			vetor = excluiLetraDoVetor(vetor, document.getElementById("chave").value[i]);
 		}
@@ -93,6 +95,7 @@ function geraChaveManual(){
 					document.querySelectorAll("td")[i].innerHTML="";
 					let input=document.createElement("input");
 					input.setAttribute("type","text");
+					input.setAttribute("disabled","yes");
 					 document.querySelectorAll("td")[i].appendChild(input);
 					input.setAttribute("value",vetor[j]);
 					vetor = excluiLetraDoVetor(vetor, vetor[j]);
@@ -224,6 +227,8 @@ function descriptografa(){
 		textoSaida.value+=subStringsDecriptografadas[i];
 	}
 	
+	if(textoSaida.value[textoSaida.value.length-1]=='Z'){textoSaida.value=textoSaida.value.substring(0,textoSaida.value.length-1);}
+	
 }
 
 function descriptografaGrupos(pilhaGrupos){
@@ -311,5 +316,10 @@ onload=function(){
 	document.getElementById("gerar-chave-playfair").addEventListener("click",criptografa,false);
 	document.getElementById("criptografa").onclick=criptografa;
 	document.getElementById("descriptografa").onclick=descriptografa;
+	document.getElementById("texto-claro").onkeyup=function(){
+		let string = this.value.toUpperCase();
+		//console.log(string);
+		this.value=string;
+	}
 	geraNovaChave();
 };
