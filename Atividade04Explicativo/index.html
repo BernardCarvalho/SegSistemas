@@ -1,0 +1,44 @@
+<html>
+
+	<head>
+	</head>
+	<style>*{text-align:center;}input,button{width:100%;font-size: 30px;}
+	div{min-width:800px;display:inline-block;}table{display:inline-block}table#chave-playfair, table#chave-playfair td{border:1px solid black;text-align:center;padding:1em;}td{width: 2em;}</style>
+	<script src="algoritmos.js"></script>
+	<body>
+	<div>
+		<h1>Cifra de Playfair</h1>
+		<hr>
+			Letra "Dummy"
+			<input type="text" placeholder="Letra 'Dummy'" id="letra-dummy" maxlength="1" value="Z">
+		
+		<hr>
+		
+			Letra(s) Proibida(s)
+			<input type="text" id="letra-proibida" placeholder="Letra Proibida" maxlength="1" value="K">
+		
+		<hr>
+
+			Chave da Cifra<br>
+			<table id="chave-playfair" >
+				<tr><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td></tr>
+				<tr><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td></tr>
+				<tr><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
+				<tr><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td></tr>
+				<tr><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+			</table><br>
+			<input type="text" id="chave" disabled placeholder="GRITO"><br>
+			<input type="text" id="chave-input" placeholder="Informe uma chave aqui." maxlength="5" value="GRITO">
+
+		<hr>
+
+		<input type="text" id="texto-decriptado" disabled placeholder="O texto decriptografado aparecerá aqui">
+		<button id="botao-decripta">^ Decriptografar ^</button>
+		<input type="text" id="texto-entrada" placeholder="Texto de Entrada">
+		<button id="botao-encripta">v Criptografar v</button>
+		<input type="text" id="texto-encriptado" disabled placeholder="O texto criptografado aparecerá aqui">
+		
+	</body>
+	</div>
+
+</html>

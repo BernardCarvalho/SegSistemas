@@ -245,8 +245,10 @@ function descriptografaGrupos(pilhaGrupos){
 			console.log("String: "+string);
 			console.log(string[1]=="Z" && (i+1)<pilhaGrupos.length);
 			if(string[1]=="Z" && (i+1)<pilhaGrupos.length)
-				string=string[0]+string[0];
-			
+			{
+				resposta.push(string[0]+string[0]);
+				continue;
+			}
 			console.log("String adicionada: "+string);
 			resposta.push(string);
 			continue;
@@ -261,8 +263,10 @@ function descriptografaGrupos(pilhaGrupos){
 			console.log("String: "+string);
 			console.log(string[1]=="Z" && (i+1)<pilhaGrupos.length);
 			if(string[1]=="Z" && (i+1)<pilhaGrupos.length)
-				string[1]=string[0]+string[0];
-			
+			{
+				resposta.push(string[0]+string[0]);
+				continue;
+			}
 			console.log("String adicionada: "+string);
 			resposta.push(string);
 			continue;
@@ -273,8 +277,10 @@ function descriptografaGrupos(pilhaGrupos){
 		console.log("String: "+string);
 		console.log(string[1]=="Z" && (i+1)<pilhaGrupos.length);
 		if(string[1]=="Z" && (i+1)<pilhaGrupos.length)
-			string[1]=string[0]+string[0];
-		
+		{
+			resposta.push(string[0]+string[0]);
+			continue;
+		}
 		console.log("String adicionada: "+string);
 		resposta.push(string);
 		

@@ -61,6 +61,9 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function geraChaveManual(){
+	let string = this.value.toUpperCase();
+		//console.log(string);
+		this.value=string;
 	if(document.getElementById("chave").value.length!=5){
 		console.log("Chave de tamanho diferente de 5");
 		return;
